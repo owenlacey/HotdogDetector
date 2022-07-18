@@ -1,0 +1,26 @@
+<div class="predictor">
+
+  <div class="predictor__preview" [class.predictor__preview--placeholder]="!imageSrc" (click)="fileInput.click()">
+    <img [src]="imageSrc" *ngIf="imageSrc">
+    <h3 *ngIf="!imageSrc">Select an image</h3>
+  </div>
+
+  <form class="predictor__form">
+    <input accept="image/*" type="file" capture #fileInput (change)="onFileChange($event)"/>
+  </form>
+
+  <div class="predictor__result" *ngIf="prediction" [class.predictor__result--hotdog]="prediction != null && prediction.isHotdog">
+    <h1>
+      <span class="result-icon"></span>
+      {{prediction.isHotdog ? 'Hotdog!' : 'Not hotdog...'}}
+    </h1>
+
+    <div class="result-label">
+      <span>{{prediction.isHotdogPercentage * 100 | number: '1.2-2'}} </span>
+      <span>{{prediction.isNotHotdogPercentage * 100 | number: '1.2-2'}}  </span>
+    </div>
+    <div class="result-bar">
+      <span [style.width]="prediction.isHotdogPercentage * 100 + '%'"></span>
+    </div>
+  </div>
+</div>
