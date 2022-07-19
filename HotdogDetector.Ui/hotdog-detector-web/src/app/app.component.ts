@@ -48,10 +48,21 @@ export class AppComponent {
         }
       })
     .subscribe((res: HotDogPrediction) => {
+      const isHotdog = res.predictedLabel === 'Hotdog';
+      const maxScore = res.score[0] > res.score[1] ? res.score[0] : res.score[1];
+      const minScore = res.score[0] > res.score[1] ? res.score[1] : res.score[0];
+      let isHotDogPercentage = 0, isNotHotdogPercentage = 0;
+      if (isHotdog) {
+        isHotDogPercentage = maxScore;
+        isNotHotdogPercentage = minScore;
+      } else {
+        isHotDogPercentage = minScore;
+        isNotHotdogPercentage = maxScore;
+      }
       this.prediction = {
-        isHotdog: res.predictedLabel === 'Hotdog',
-        isHotdogPercentage: res.score[0],
-        isNotHotdogPercentage: res.score[1]
+        isHotdog: isHotdog,
+        isHotdogPercentage: isHotDogPercentage,
+        isNotHotdogPercentage: isNotHotdogPercentage
       }
     })
   }
