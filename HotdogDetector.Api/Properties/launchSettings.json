@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "HotdogDetector.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50930;http://localhost:50931"
+    }
+  }
+}

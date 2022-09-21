@@ -40,7 +40,7 @@ export class AppComponent {
     var formData = new FormData();
     formData.append("file",  file, file.name);
     this.http.post<HotDogPrediction>(
-      `https://localhost:51457/predict`, 
+      `https://localhost:50930/predict`, 
       formData,
       {
         headers:  {
